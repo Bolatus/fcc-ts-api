@@ -4,7 +4,12 @@ var app = express();
 
 
 app.get('/:tuktuk', function (req, res) {
-    var ddd = Date.parse(req.params.tuktuk);
+    var ddd = null;
+    
+    if (isNaN(req.params.tuktuk))
+        ddd = Date.parse(req.params.tuktuk);
+    else
+        ddd = parseInt(req.params.tuktuk);
     if (isNaN(ddd)){ 
         res.end('null');
     }else{
@@ -25,5 +30,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(process.env.PORT, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Example app listening on port '+process.env.PORT);
 });
